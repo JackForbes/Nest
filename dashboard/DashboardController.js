@@ -20,8 +20,6 @@
     self.selected      = null;
     self.deviceChart   = getDeviceChartData();
     self.forecastChart = getForecastChartData();
-    self.getAvatar     = getAvatar;
-    self.selectList    = selectList;
     self.toggleNav     = toggleNav;
     self.share         = share;
 
@@ -256,19 +254,14 @@
     }
 
     /**
-     * Get the number of hours since the current hour
+     * Get the number of hours from the current hour
      * @param date
      */
     function hoursFromNow(date) {
       var now = new Date();
-      // The number of milliseconds in one day
-      var ONE_HOUR = 1000 * 60 * 60;
 
-      // Convert both dates to milliseconds
       var dateHours = date.getHours();
       var currentHour = now.getHours();
-
-      // Calculate the difference in milliseconds
       var difference = dateHours - currentHour;
 
       if (difference == 0) {
@@ -278,24 +271,6 @@
       }
 
       return difference + ' hours from now';
-    }
-
-    /**
-     * Create Avatar SVG String
-     */
-    function getAvatar() {
-      var avatarNum = self.lists.length + 1;
-      var avatar = 'svg-' + avatarNum.toString();
-      return avatar;
-    }
-
-    /**
-     * Select the current avatars
-     * @param menuId
-     */
-    function selectList ( list ) {
-      self.selected = angular.isNumber(list) ? $scope.lists[list] : list;
-      self.toggleNav();
     }
 
     /**

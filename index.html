@@ -22,9 +22,10 @@
   <md-toolbar class="md-whiteframe-z1">
     <div class="md-toolbar-tools toolbar">
       <md-button class="md-icon-button" ng-click="ctrl.toggleNav()" aria-label="Menu">
-        <md-icon md-svg-icon="navigation:menu"></md-icon>
+        <md-icon md-svg-icon="navigation:menu" class="hamburgerMenu"></md-icon>
       </md-button>
-      <h1 layout layout-align="center center" flex>Welcome Home</h1>
+      <img src="assets/images/nest-logo.png" alt="Nest" height="25px" />
+      <span flex></span>
       <md-button class="md-icon-button" aria-label="Profile">
         <md-tooltip>Profile</md-tooltip>
         <md-icon md-svg-icon="social:person"></md-icon>
@@ -55,98 +56,68 @@
     </md-sidenav>
 
     <!-- Main Content -->
-    <md-content flex layout-padding>
-      <!-- <div ui-view="frame.content"></div> -->
-      <!-- Weekly Forecast -->
-      <md-whiteframe class="md-whiteframe-z2" layout="column" layout-align="center center" layout-padding layout-margin>
-        <h2>Weekly Forecast</h2>
-        <linechart data="ctrl.forecastChart.data" options="ctrl.forecastChart.config" mode="" height="300"></linechart>
-      </md-whiteframe>
+    <md-content flex layout-padding class="mainContent">
+      <div layout layout-align="space-between start" layout-padding layout-margin>
 
-      <!-- Devices -->
-      <md-whiteframe class="md-whiteframe-z2" layout="column" layout-align="center center" layout-padding layout-margin>
-        <h2>Your Devices</h2>
-        <div layout>
-          <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center" layout-padding layout-margin>
-            <h3>Upstairs</h3>
-            <img class="devicePic" src="assets/images/thermostat-74.png" alt="Thermostat" />
-          </md-whiteframe>
-          <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center" layout-padding layout-margin>
-            <h3>Downstairs</h3>
-            <img class="devicePic" src="assets/images/thermostat-72.png" alt="Thermostat" />
-          </md-whiteframe>
+        <!-- Charts -->
+        <div layout="column" layout-align="start start">
+
+          <div layout layout-align="start start">
+            <!-- City Info -->
+            <div layout class="cityContainer">
+              <div layout="column" layout-align="start start">
+                <h2 class="city">Palo Alto, CA</h2>
+                <h3 class="day">Monday 4:00 PM</h3>
+                <div layout layout-margin>
+                  <md-icon md-svg-icon="image:wb_sunny" class="sun"></md-icon>
+                  <div layout layout-align="start start">
+                    <h1 class="temp">72</h1>
+                    <h4 class="degrees">°F</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Forecast Chart -->
+            <div layout="column">
+              <h3 class="day">Temperature Forecast</h3>
+              <linechart data="ctrl.forecastChart.data" options="ctrl.forecastChart.config" mode="" height="200" width="600"></linechart>
+            </div>
+          </div>
+
+          <!-- Device Chart -->
+          <div layout="column" layout-align="start start" layout-padding layout-margin>
+            <h2 class="deviceChart">Your Devices</h2>
+            <h3 class="deviceChart">Past 24 Hours</h3>
+            <linechart data="ctrl.deviceChart.data" options="ctrl.deviceChart.config" mode="" width="900" height="300"></linechart>
+          </div>
+
         </div>
-      </md-whiteframe>
 
-      <!-- Graph -->
-      <md-whiteframe class="md-whiteframe-z2" layout="column" layout-align="center center" layout-padding layout-margin>
-        <h2>Past 24 Hours</h2>
-        <linechart data="ctrl.deviceChart.data" options="ctrl.deviceChart.config" mode="" width="800" height="400"></linechart>
-      </md-whiteframe>
+        <!-- Devices -->
+        <div layout="column" layout-align="start center">
+          <h2 class="devices">Your Devices</h2>
+          <div layout="column" layout-align="center center" layout-padding layout-margin>
+            <img class="devicePic" src="assets/images/thermostat-74.png" alt="Thermostat" />
+            <h3 class="deviceLabel">Upstairs</h3>
+          </div>
+          <div layout="column" layout-align="center center" layout-padding layout-margin>
+            <img class="devicePic" src="assets/images/thermostat-72.png" alt="Thermostat" />
+            <h3 class="deviceLabel">Downstairs</h3>
+          </div>
+          <div layout="column" layout-align="center center" layout-padding layout-margin>
+            <img class="devicePic" src="assets/images/protect.png" alt="Protect" />
+            <h3 class="deviceLabel">Kitchen</h3>
+          </div>
+          <div layout="column" layout-align="center center" layout-padding layout-margin>
+            <md-icon md-svg-icon="content:add_box" class="deviceAdd"></md-icon>
+            <h3 class="deviceLabel">Add Device</h3>
+          </div>
+        </div>
+      </div>
 
     </md-content>
 
   </section>
-
-  <!-- <div flex layout="row">
-
-    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
-      <md-list>
-        <md-item layout layout-align="start center" layout-padding>
-          <md-icon md-svg-icon="{{ ctrl.getAvatar() }}" class="avatar"></md-icon>
-          <md-input-container flex>
-            <label>New List</label>
-            <input ng-model="ctrl.newListName">
-          </md-input-container>
-          <div ng-show="ctrl.newListName">
-            <md-button ng-click="ctrl.addList(ctrl.newListName)" aria-label="Add List">
-              <md-icon md-svg-icon="add"></md-icon>
-            </md-button>
-          </div>
-        </md-item>
-        <md-item ng-repeat="list in ctrl.lists">
-          <md-button class="block" ng-click="ctrl.selectList(list)" ng-class="{'selected' : list === ctrl.selected }">
-            <md-icon md-svg-icon="{{list.avatar}}" class="avatar"></md-icon>
-            {{list.name}}
-          </md-button>
-        </md-item>
-      </md-list>
-    </md-sidenav>
-
-    <md-content flex id="content">
-      <div layout layout-align="center center">
-        <md-icon md-svg-icon="{{ctrl.selected.avatar}}" class="avatar"></md-icon>
-        <h2>{{ctrl.selected.name}}</h2>
-      </div>
-      <div flex layout="column" layout-align="start center">
-        <md-list>
-          <md-list-item class="md-whiteframe-z1 todo" layout layout-align="space-between center" layout-margin>
-            <md-input-container class="new-todo" flex>
-              <label>New Todo</label>
-              <input ng-model="ctrl.newTodoTitle">
-            </md-input-container>
-            <md-button ng-click="ctrl.addTodo(ctrl.newTodoTitle)" class="add-todo" ng-show="ctrl.newTodoTitle" aria-label="Add Todo">
-              <md-icon md-svg-icon="add"></md-icon>
-            </md-button>
-          </md-list-item>
-          <md-list-item class="md-whiteframe-z1 todo" ng-repeat="todo in ctrl.selected.todos track by $index" layout layout-align="space-between center" layout-margin>
-            <div class="todo-remove" ng-click="ctrl.removeTodo($index)" layout="column">
-              <md-icon md-svg-icon="clear"></md-icon>
-            </div>
-            <h3 class="todo-title"> {{ todo.title }} </h3>
-            <div class="todo-check" ng-class="{done: todo.done}" ng-click="todo.done = true" layout="column">
-              <md-icon md-svg-icon="check"></md-icon>
-            </div>
-          </md-list-item>
-        </md-list>
-      </div>
-
-      <md-button class="share" md-no-ink ng-click="ctrl.share($event)" aria-label="Share">
-        <md-icon md-svg-icon="share"></md-icon>
-      </md-button>
-    </md-content>
-
-  </div> -->
 
   <!-- Angular Material Dependencies -->
   <script src="bower_components/angular/angular.min.js"></script>

@@ -15,12 +15,20 @@
   function DashboardService($q){
     var items = [
       {
-        title: 'Add Thermostat',
-        svg: 'content:add_box'
+        title: 'Home',
+        svg: 'editor:insert_chart'
       },
       {
-        title: 'Add Nest Protect',
-        svg: 'content:add_box'
+        title: 'Upstairs',
+        svg: 'hardware:toys'
+      },
+      {
+        title: 'Downstairs',
+        svg: 'hardware:toys'
+      },
+      {
+        title: 'Kitchen',
+        svg: 'social:whatshot'
       },
       {
         title: 'Home Settings',
