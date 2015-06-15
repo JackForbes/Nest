@@ -58,31 +58,31 @@
     <md-content flex layout-padding>
       <!-- <div ui-view="frame.content"></div> -->
       <!-- Weekly Forecast -->
-      <h2>Weekly Forecast</h2>
-      <div layout>
-        <!-- <div ac-chart="bar" ac-data="ctrl.forecastChart.data" ac-config="ctrl.forecastChart.config" id='chart' class='forecastChart'></div> -->
+      <md-whiteframe class="md-whiteframe-z2" layout="column" layout-align="center center" layout-padding layout-margin>
+        <h2>Weekly Forecast</h2>
         <linechart data="ctrl.forecastChart.data" options="ctrl.forecastChart.config" mode="" height="300"></linechart>
-      </div>
+      </md-whiteframe>
 
       <!-- Devices -->
-      <h2>Your Devices</h2>
-      <div layout>
-        <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center" layout-padding layout-margin>
-          <h3>Upstairs</h3>
-          <img class="devicePic" src="assets/images/thermostat-74.png" alt="Thermostat" />
-        </md-whiteframe>
-        <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center" layout-padding layout-margin>
-          <h3>Downstairs</h3>
-          <img class="devicePic" src="assets/images/thermostat-72.png" alt="Thermostat" />
-        </md-whiteframe>
-      </div>
+      <md-whiteframe class="md-whiteframe-z2" layout="column" layout-align="center center" layout-padding layout-margin>
+        <h2>Your Devices</h2>
+        <div layout>
+          <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center" layout-padding layout-margin>
+            <h3>Upstairs</h3>
+            <img class="devicePic" src="assets/images/thermostat-74.png" alt="Thermostat" />
+          </md-whiteframe>
+          <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center" layout-padding layout-margin>
+            <h3>Downstairs</h3>
+            <img class="devicePic" src="assets/images/thermostat-72.png" alt="Thermostat" />
+          </md-whiteframe>
+        </div>
+      </md-whiteframe>
 
       <!-- Graph -->
-      <h2>Past 24 Hours</h2>
-      <div layout>
+      <md-whiteframe class="md-whiteframe-z2" layout="column" layout-align="center center" layout-padding layout-margin>
+        <h2>Past 24 Hours</h2>
         <linechart data="ctrl.deviceChart.data" options="ctrl.deviceChart.config" mode="" width="800" height="400"></linechart>
-        <!-- <angular-chart options="ctrl.chartOptions"></angular-chart> -->
-      </div>
+      </md-whiteframe>
 
     </md-content>
 
