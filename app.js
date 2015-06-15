@@ -4,8 +4,6 @@
 angular.module('myApp', [
     'ngMaterial',
     'dashboard',
-    'angularChart',
-    'angularCharts',
     'n3-line-chart'
   ])
   .config(function($mdThemingProvider, $mdIconProvider) {
