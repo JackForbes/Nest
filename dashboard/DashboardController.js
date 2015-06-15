@@ -53,7 +53,7 @@
               type: "area",
               striped: false,
               axis: "y",
-              color: "#50C3DD",
+              color: "#1f77b4",
               thickness: "1px",
               dotSize: 2,
               id: "series_0"
@@ -64,7 +64,7 @@
               type: "area",
               striped: false,
               axis: "y",
-              color: "#FFCC00",
+              color: "#ff7f0e",
               thickness: "1px",
               dotSize: 2,
               id: "series_1"
@@ -74,7 +74,7 @@
           tooltip: {
             mode: "scrubber",
             formatter: function (x, y, series) {
-              return daysFromNow(x) + ' : ' + y;
+              return daysFromNow(x) + ' : ' + y + '°F';
             }
           },
           stacks: [],
@@ -172,7 +172,7 @@
           tooltip: {
             mode: 'scrubber',
             formatter: function (x, y, series) {
-              return hoursFromNow(x) + ' : ' + y;
+              return hoursFromNow(x) + ' : ' + y + '°F';
             }
           },
           stacks: [],
