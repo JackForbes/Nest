@@ -13,64 +13,26 @@
    * @constructor
    */
   function DashboardService($q){
-    var lists = [
+    var items = [
       {
-        name: 'Groceries',
-        avatar: 'svg-1',
-        todos: [
-          { title: 'Milk', done: false },
-          { title: 'Fruit', done: false },
-          { title: 'Bread', done: false },
-          { title: 'Cereal', done: false },
-          { title: 'Sandwich Meat', done: false },
-          { title: 'Vegetables', done: false }
-        ]
+        title: 'Add Thermostat',
+        svg: 'content:add_box'
       },
       {
-        name: 'Clean',
-        avatar: 'svg-2',
-        todos: [
-          { title: 'Kitchen', done: false },
-          { title: 'Bathroom', done: false },
-          { title: 'Vacuum', done: false },
-          { title: 'Windows', done: false }
-        ]
+        title: 'Add Nest Protect',
+        svg: 'content:add_box'
       },
       {
-        name: 'Car',
-        avatar: 'svg-3',
-        todos: [
-          { title: 'Oil Change', done: false },
-          { title: 'Check Tire Pressure', done: false },
-          { title: 'Check Brakes', done: false }
-        ]
-      },
-      {
-        name: 'Pack For Vancouver',
-        avatar: 'svg-4',
-        todos: [
-          { title: 'Passport', done: false },
-          { title: 'Green Card', done: false },
-          { title: 'Laptop + Charger', done: false },
-          { title: 'Phone + Charger', done: false }
-        ]
-      },
-      {
-        name: 'Coding Challenge',
-        avatar: 'svg-5',
-        todos: [
-          { title: 'View Items', done: true },
-          { title: 'Add Items', done: true },
-          { title: 'Delete Items', done: true }
-        ]
+        title: 'Home Settings',
+        svg: 'action:settings'
       }
     ];
 
     // Promise-based API
     return {
-      loadAllLists : function() {
+      loadAllItems : function() {
         // Simulate async nature of real remote calls
-        return $q.when(lists);
+        return $q.when(items);
       }
     };
   }

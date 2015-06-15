@@ -19,9 +19,32 @@ html, body {
 md-toolbar h1 {
   margin: auto;
 }
+.toolbar {
+  background-image: url('images/blue-sky.jpg');
+  background-size: cover;
+}
 
 /* Sidenav area */
-md-list .md-button.block {
+.sidenav {
+  background-color: #9BA7AE;
+  background-image: url('images/grey-texture.png');
+  background-repeat: repeat;
+}
+
+.sidenavContent {
+  background: transparent;
+}
+
+.navTitle, .navIcon {
+  color: #FAFAFA !important;
+}
+
+.navTitle {
+  margin: 0 !important;
+}
+
+
+/*md-list .md-button.block {
   color: inherit;
   font-weight: 500;
   text-align: left;
@@ -32,9 +55,19 @@ md-list .md-button.selected {
 }
 md-sidenav  md-list {
   padding: 0px 0px 8px 0px;
-}
+}*/
 
 /* Primary content area */
+.devicePic {
+  width: 200px;
+  height: 200px;
+}
+
+.forecastChart {
+  width: 800px;
+  height: 400px;
+}
+
 #content  {
   padding-left: 40px;
   padding-right: 40px;

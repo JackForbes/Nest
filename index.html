@@ -1,28 +1,94 @@
 <html lang="en">
-  <head>
-    <title>Nest</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Nest Shenanigans">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+<head>
+  <title>Nest</title>
 
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
-    <link rel="stylesheet" href="assets/app.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Nest Shenanigans">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-    <link rel="shortcut icon" href="https://d2gpw04v015qcw.cloudfront.net/images/global/favicon-4609cb78.ico">
-  </head>
-  <body ng-app="myApp" layout="column" ng-controller="DashboardController as ctrl">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
 
-    <md-toolbar layout="row">
-      <md-button class="menu" hide-gt-sm ng-click="ctrl.toggleList()" aria-label="Show List">
-        <md-icon md-svg-icon="menu"></md-icon>
+  <link rel="stylesheet" href="assets/app.css">
+
+  <link rel="shortcut icon" href="https://d2gpw04v015qcw.cloudfront.net/images/global/favicon-4609cb78.ico">
+</head>
+
+<body ng-app="myApp" layout="column" ng-controller="DashboardController as ctrl">
+
+  <!-- Toolbar -->
+  <md-toolbar class="md-whiteframe-z1">
+    <div class="md-toolbar-tools toolbar">
+      <md-button class="md-icon-button" ng-click="ctrl.toggleNav()" aria-label="Menu">
+        <md-icon md-svg-icon="navigation:menu"></md-icon>
       </md-button>
-      <h1>Material Dashboard</h1>
-    </md-toolbar>
+      <h1 layout layout-align="center center" flex>Welcome Home</h1>
+      <md-button class="md-icon-button" aria-label="Profile">
+        <md-tooltip>Profile</md-tooltip>
+        <md-icon md-svg-icon="social:person"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Messages">
+        <md-tooltip>Messages</md-tooltip>
+        <md-icon md-svg-icon="communication:message"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
 
-    <div flex layout="row">
+  <section class="frame" layout="row" flex>
+
+    <!-- Material Sidenav -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2 sidenav" md-component-id="left">
+      <md-content class="sidenavContent">
+        <md-list>
+          <a ng-repeat="item in ctrl.navItems" class="navLink">
+            <md-list-item class="md-2-line navItem" ng-click="ctrl.closeNav($mdMedia('gt-sm'))">
+              <md-icon md-svg-icon="{{item.svg}}" class="navIcon"></md-icon>
+              <div class="md-list-item-text">
+                <h3 class="navTitle"> {{ item.title }} </h3>
+              </div>
+            </md-list-item>
+          </a>
+        </md-list>
+      </md-content>
+    </md-sidenav>
+
+    <!-- Main Content -->
+    <md-content flex layout-padding>
+      <!-- <div ui-view="frame.content"></div> -->
+      <!-- Weekly Forecast -->
+      <h2>Weekly Forecast</h2>
+      <div layout>
+        <!-- <div ac-chart="bar" ac-data="ctrl.forecastChart.data" ac-config="ctrl.forecastChart.config" id='chart' class='forecastChart'></div> -->
+        <linechart data="ctrl.forecastChart.data" options="ctrl.forecastChart.config" mode="" height="300"></linechart>
+      </div>
+
+      <!-- Devices -->
+      <h2>Your Devices</h2>
+      <div layout>
+        <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center" layout-padding layout-margin>
+          <h3>Upstairs</h3>
+          <img class="devicePic" src="assets/images/thermostat-74.png" alt="Thermostat" />
+        </md-whiteframe>
+        <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center" layout-padding layout-margin>
+          <h3>Downstairs</h3>
+          <img class="devicePic" src="assets/images/thermostat-72.png" alt="Thermostat" />
+        </md-whiteframe>
+      </div>
+
+      <!-- Graph -->
+      <h2>Past 24 Hours</h2>
+      <div layout>
+        <linechart data="ctrl.deviceChart.data" options="ctrl.deviceChart.config" mode="" width="800" height="400"></linechart>
+        <!-- <angular-chart options="ctrl.chartOptions"></angular-chart> -->
+      </div>
+
+    </md-content>
+
+  </section>
+
+  <!-- <div flex layout="row">
 
     <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
       <md-list>
@@ -49,8 +115,8 @@
 
     <md-content flex id="content">
       <div layout layout-align="center center">
-          <md-icon md-svg-icon="{{ctrl.selected.avatar}}" class="avatar"></md-icon>
-          <h2>{{ctrl.selected.name}}</h2>
+        <md-icon md-svg-icon="{{ctrl.selected.avatar}}" class="avatar"></md-icon>
+        <h2>{{ctrl.selected.name}}</h2>
       </div>
       <div flex layout="column" layout-align="start center">
         <md-list>
@@ -80,19 +146,22 @@
       </md-button>
     </md-content>
 
-    </div>
+  </div> -->
 
-    <!-- Angular Material Dependencies -->
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
-    <script src="bower_components/angular-material/angular-material.min.js"></script>
+  <!-- Angular Material Dependencies -->
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="bower_components/angular-material/angular-material.min.js"></script>
+  <script src="bower_components/d3/d3.min.js"></script>
+  <script src="bower_components/n3-line-chart/build/line-chart.min.js"></script>
 
-    <!-- App Dependencies -->
-    <script src="dashboard/Dashboard.js"></script>
-    <script src="dashboard/DashboardController.js"></script>
-    <script src="dashboard/DashboardService.js"></script>
-    <script src="app.js"></script>
+  <!-- App Dependencies -->
+  <script src="dashboard/Dashboard.js"></script>
+  <script src="dashboard/DashboardController.js"></script>
+  <script src="dashboard/DashboardService.js"></script>
+  <script src="app.js"></script>
 
-  </body>
+</body>
+
 </html>
