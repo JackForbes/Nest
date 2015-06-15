@@ -1,0 +1,25 @@
+{
+  "name": "jack-nest",
+  "version": "0.0.1",
+  "authors": [
+    "Jack Forbes <jackforbes24@gmail.com>"
+  ],
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.x",
+    "angular-animate": "~1.4.x",
+    "angular-messages": "~1.4.x",
+    "angular-resource": "~1.4.x",
+    "angular-route": "~1.4.x",
+    "angular-sanitize": "~1.4.x",
+    "angular-aria": "~1.4.x",
+    "angular-material": "~0.10.x",
+    "underscore": "~1.7.0",
+    "angular-chart": "~0.3.1"
+  }
+}
