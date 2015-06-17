@@ -1,8 +1,8 @@
-(function(){
+(function() {
   'use strict';
 
   angular.module('dashboard')
-         .service('DashboardService', ['$q', DashboardService]);
+    .service('DashboardService', ['$q', DashboardService]);
 
   /**
    * Lists DataService
@@ -12,33 +12,27 @@
    * @returns {{loadAll: Function}}
    * @constructor
    */
-  function DashboardService($q){
-    var items = [
-      {
-        title: 'Home',
-        svg: 'editor:insert_chart'
-      },
-      {
-        title: 'Upstairs',
-        svg: 'hardware:toys'
-      },
-      {
-        title: 'Downstairs',
-        svg: 'hardware:toys'
-      },
-      {
-        title: 'Kitchen',
-        svg: 'social:whatshot'
-      },
-      {
-        title: 'Home Settings',
-        svg: 'action:settings'
-      }
-    ];
+  function DashboardService($q) {
+    var items = [{
+      title: 'Home',
+      svg: 'editor:insert_chart'
+    }, {
+      title: 'Upstairs',
+      svg: 'hardware:toys'
+    }, {
+      title: 'Downstairs',
+      svg: 'hardware:toys'
+    }, {
+      title: 'Kitchen',
+      svg: 'social:whatshot'
+    }, {
+      title: 'Home Settings',
+      svg: 'action:settings'
+    }];
 
     // Promise-based API
     return {
-      loadAllItems : function() {
+      loadAllItems: function() {
         // Simulate async nature of real remote calls
         return $q.when(items);
       }

@@ -18,8 +18,9 @@
     var self = this;
 
     self.selected      = null;
-    self.deviceChart   = getDeviceChartData();
     self.forecastChart = getForecastChartData();
+    self.deviceChart   = getDeviceChartData();
+    self.moneyChart    = getMoneyChartData();
     self.toggleNav     = toggleNav;
     self.share         = share;
 
@@ -37,7 +38,7 @@
     // *********************************
 
     /**
-     * Get Chart Data
+     * Get Forecast Chart Data
      */
     function getForecastChartData() {
       var data = {
@@ -74,7 +75,7 @@
           tooltip: {
             mode: "scrubber",
             formatter: function (x, y, series) {
-              return daysFromNow(x) + ' : ' + y + '°F';
+              return daysFromNow(x) + ': ' + y + '°F';
             }
           },
           stacks: [],
@@ -115,7 +116,7 @@
     }
 
     /**
-     * Get Chart Options
+     * Get Device Chart Data
      */
     function getDeviceChartData() {
       var data = {
@@ -172,7 +173,7 @@
           tooltip: {
             mode: 'scrubber',
             formatter: function (x, y, series) {
-              return hoursFromNow(x) + ' : ' + y + '°F';
+              return hoursFromNow(x) + ': ' + y + '°F';
             }
           },
           stacks: [],
@@ -215,6 +216,77 @@
         { x: '2015-06-15T21:00:00.082Z', y: 70, val_2: 72, val_3: 3 },
         { x: '2015-06-15T22:00:00.082Z', y: 70, val_2: 72, val_3: 3 },
         { x: '2015-06-15T23:00:00.082Z', y: 69, val_2: 71, val_3: 3 }
+      ];
+
+
+      rawData.map(function(r) {
+        r.x = new Date(r.x);
+        return r;
+      });
+
+      data.data = rawData;
+
+      return data;
+    }
+
+    /**
+     * Get Money Chart Data
+     */
+    function getMoneyChartData() {
+      var data = {
+        config: {
+          axes: {
+            x: {
+              type: "date",
+              key: "x"
+            },
+            y: {
+              type: "linear"
+            }
+          },
+          series: [
+            {
+              y: 'y',
+              type: 'column',
+              striped: false,
+              label: 'Money Saved',
+              axis: 'y',
+              color: '#2ca02c',
+              thickness: '1px',
+              dotSize: 2,
+              id: 'series_0'
+            }
+          ],
+          lineMode: 'cardinal',
+          tooltip: {
+            mode: 'scrubber',
+            formatter: function (x, y, series) {
+              return x.toLocaleString('en-us', { month: "long" }) + ': ' + '$' + y;
+            }
+          },
+          stacks: [],
+          margin: {
+            top: 20,
+            right: 50,
+            bottom: 60,
+            left: 50,
+            width: 1148,
+            height: 500
+          },
+          tension: 0.7,
+          drawLegend: true,
+          drawDots: true,
+          columnsHGap: 5
+        }
+      };
+
+      var rawData = [
+        { x: '2015-01-01T12:00:00.082Z', y: 14 },
+        { x: '2015-02-01T12:00:00.082Z', y: 26 },
+        { x: '2015-03-01T12:00:00.082Z', y: 39 },
+        { x: '2015-04-01T12:00:00.082Z', y: 50 },
+        { x: '2015-05-01T12:00:00.082Z', y: 60 },
+        { x: '2015-06-01T12:00:00.082Z', y: 70 }
       ];
 
 
@@ -293,7 +365,7 @@
 
         $mdBottomSheet.show({
           parent: angular.element(document.getElementById('content')),
-          templateUrl: 'todo/view/shareSheet.html',
+          templateUrl: 'dashboard/view/shareSheet.html',
           controller: [ '$mdBottomSheet', TodoSheetController ],
           controllerAs: "vm",
           bindToController : true,
@@ -308,7 +380,7 @@
         function TodoSheetController( $mdBottomSheet ) {
           this.list = list;
           this.items = [
-            { name: 'Phone'       , icon: 'phone'       , icon_url: 'assets/svg/phone.svg'},
+            // { name: 'Facebook'    , icon: 'facebook'    , icon_url: 'assets/svg/facebook.svg'},
             { name: 'Twitter'     , icon: 'twitter'     , icon_url: 'assets/svg/twitter.svg'},
             { name: 'Google+'     , icon: 'google_plus' , icon_url: 'assets/svg/google_plus.svg'},
             { name: 'Hangout'     , icon: 'hangouts'    , icon_url: 'assets/svg/hangouts.svg'}

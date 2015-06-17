@@ -58,17 +58,17 @@
 
     <!-- Main Content -->
     <md-content flex layout-padding class="mainContent">
-      <div layout layout-align="space-between start" layout-padding layout-margin>
+      <div layout layout-sm="column" layout-align="space-between start" layout-align-sm="start center" layout-padding layout-margin>
 
         <!-- Charts -->
-        <div layout="column" layout-align="start start">
+        <div layout="column" layout-align="start start" resize>
 
-          <div layout layout-align="start start">
+          <div layout layout-sm="column" layout-align="start start" layout-padding>
             <!-- City Info -->
             <div layout class="cityContainer">
               <div layout="column" layout-align="start start">
                 <h2 class="city">Palo Alto, CA</h2>
-                <h3 class="day">Monday 4:00 PM</h3>
+                <h3 class="day">Thursday 3:00 PM</h3>
                 <div layout layout-margin>
                   <md-icon md-svg-icon="image:wb_sunny" class="sun"></md-icon>
                   <div layout layout-align="start start">
@@ -78,18 +78,34 @@
                 </div>
               </div>
             </div>
+
             <!-- Forecast Chart -->
             <div layout="column">
               <h3 class="day">Temperature Forecast</h3>
-              <linechart data="ctrl.forecastChart.data" options="ctrl.forecastChart.config" mode="" height="200" width="600"></linechart>
+              <linechart data="ctrl.forecastChart.data" options="ctrl.forecastChart.config" mode="" height="200" width="{{forecastChartWidth}}"></linechart>
             </div>
           </div>
 
           <!-- Device Chart -->
-          <div layout="column" layout-align="start start">
+          <div layout="column" layout-align="start start" layout-padding>
             <h2 class="deviceChart">Your Devices</h2>
             <h3 class="deviceChart">Past 24 Hours</h3>
-            <linechart data="ctrl.deviceChart.data" options="ctrl.deviceChart.config" mode="" width="900" height="300"></linechart>
+            <linechart data="ctrl.deviceChart.data" options="ctrl.deviceChart.config" mode="" height="300" width="{{deviceChartWidth}}"></linechart>
+          </div>
+
+          <!-- Money Saved -->
+          <div layout="column" layout-align="start start" layout-padding>
+            <div class="moneyTitle" layout layout-align="space-between center">
+              <div layout="column" layout-align="start start">
+                <h2 class="deviceChart">Money Saved</h2>
+                <h3 class="deviceChart">This Year</h3>
+              </div>
+              <md-button ng-click="ctrl.share($event)" aria-label="Share">
+                <md-tooltip>Share</md-tooltip>
+                <md-icon class="share" md-svg-icon="social:share"></md-icon>
+              </md-button>
+            </div>
+            <linechart data="ctrl.moneyChart.data" options="ctrl.moneyChart.config" mode="" height="300" width="{{deviceChartWidth}}"></linechart>
           </div>
 
         </div>
@@ -132,6 +148,7 @@
   <script src="dashboard/Dashboard.js"></script>
   <script src="dashboard/DashboardController.js"></script>
   <script src="dashboard/DashboardService.js"></script>
+  <script src="dashboard/DashboardDirective.js"></script>
   <script src="app.js"></script>
 
 </body>
